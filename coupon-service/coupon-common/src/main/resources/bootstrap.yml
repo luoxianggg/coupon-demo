@@ -1,0 +1,17 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: service-common
+  cloud:
+    config:
+      uri: http://localhost:8002/
+      profile: dev
+  profiles:
+    active: dev
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://server1:8000/eureka/
