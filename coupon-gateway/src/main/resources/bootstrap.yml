@@ -1,27 +1,24 @@
 server:
-  port: 8001
+  port: 8002
 
 spring:
   application:
     name: coupon-gateway
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 6000ms
+  # password: root
+  datasource:
+    url: jdbc:mysql://localhost:3306/coupon_db
+    username: root
+    password: root
 
 eureka:
   client:
     service-url:
       defaultZone: http://server1:8000/eureka/
 
-zuul:
-  prefix: /imooc
-  routes:
-    # 优惠券模板微服务路由配置定义
-    template:
-      path: /coupon-template/**
-      serviceId: eureka-client-coupon-template
-      strip-prefix: false
-  host:
-    connect-timeout-millis: 15000
-    socket-timeout-millis: 60000
 
-ribbon:
-  ConnectTimeout: 15000
-  ReadTimeout: 15000
+
+

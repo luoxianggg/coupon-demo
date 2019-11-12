@@ -1,19 +1,21 @@
-package com.lx.config.controller;
+package com.lx.coupon.controller;
 
-import com.lx.config.bean.Param;
-import com.lx.config.bean.RequestResult;
-import com.lx.config.bean.SCCSystem;
-import com.lx.config.bean.SCCUser;
-import com.lx.config.service.SysService;
+import com.lx.coupon.bean.Param;
+import com.lx.coupon.bean.RequestResult;
+import com.lx.coupon.bean.SCCSystem;
+import com.lx.coupon.bean.SysUser;
+import com.lx.coupon.service.sys.SysService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-public class SysController {
+public class SysUserRolesController {
 
     @Autowired
     private SysService sysService;
@@ -24,11 +26,11 @@ public class SysController {
             return new RequestResult("1","token为空，非法请求",null);
         }
 
-        SCCUser user = sysService.queryUserInfo(token);
+        SysUser user = sysService.queryUserInfo(token);
         return new RequestResult("0",null,user);
     }
 
-    //查询子系统信息
+    /*//查询子系统信息
     @PostMapping("/querysysinfo")
     public RequestResult quertSysInfo(){
         List<SCCSystem> sccSystemList = sysService.querySysInfo();
@@ -48,5 +50,5 @@ public class SysController {
 
         int affectCount =  sysService.updateParam(paramId,paramValue);
         return new RequestResult();
-    }
+    }*/
 }

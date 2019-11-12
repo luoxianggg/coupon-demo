@@ -1,13 +1,16 @@
-package com.lx.config.bean;
+package com.lx.coupon.bean;
 
-public class SCCUser {
+import lombok.Data;
+
+@Data
+public class SysUser {
     private  String userName;
 
     private String lastLoginDateTime;
 
     private transient long uniqueId;
 
-    public SCCUser(String userName,String lastLoginDate ,  String lastLoginTime) {
+    public SysUser(String userName, String lastLoginDate , String lastLoginTime) {
         this.userName = userName;
         if(lastLoginDate==null||lastLoginTime==null){
             this.lastLoginDateTime=null;
@@ -17,10 +20,10 @@ public class SCCUser {
 
     }
 
-    public SCCUser() {
+    public SysUser() {
     }
 
-    public String getUserName() {
+   /* public String getUserName() {
         return userName;
     }
 
@@ -42,5 +45,5 @@ public class SCCUser {
 
     public void setUniqueId(long uniqueId) {
         this.uniqueId = uniqueId;
-    }
+    }*/
 }

@@ -1,7 +1,7 @@
-package com.lx.config.filter;
+package com.lx.coupon.filter;
 
-import com.lx.config.bean.SCCUser;
-import com.lx.config.service.UserService;
+import com.lx.coupon.bean.SysUser;
+import com.lx.coupon.service.sys.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,10 +16,10 @@ public class LoginFilter implements Filter{
 
     private static Logger logger  = LoggerFactory.getLogger(LoginFilter.class);
 
-    private UserService userService;
+    private SysUserService sysUserService;
 
-    public LoginFilter(UserService userService) {
-        this.userService = userService;
+    public LoginFilter(SysUserService sysUserService) {
+        this.sysUserService = sysUserService;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class LoginFilter implements Filter{
             //1.不需要登录验证
             if(isExclude){
                 filterChain.doFilter(request,response);
-            }else if(userService.userExistInCache(request.getParameter("token"))){
+            }else if(sysUserService.userExistInCache(request.getParameter("token"))){
                 filterChain.doFilter(request,response);
             }else{
                 //验证未通过，跳转到登录页面
@@ -59,9 +59,9 @@ public class LoginFilter implements Filter{
 
         }else{
             //登录请求业务逻辑
-            SCCUser sccUser  = userService.login(request.getParameter("username"),request.getParameter("password"));
+            SysUser sysUser = sysUserService.login(request.getParameter("username"),request.getParameter("password"));
             //1.正确登陆
-            if(sccUser == null){
+            if(sysUser == null){
                 //2.未通过登录重定向到登录页
                 request.getRequestDispatcher("/loginfail").forward(request,response);
             }else{

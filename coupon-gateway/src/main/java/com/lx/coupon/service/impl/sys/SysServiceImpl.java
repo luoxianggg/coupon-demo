@@ -1,20 +1,11 @@
-package com.lx.config.service.impl;
+package com.lx.coupon.service.impl.sys;
 
 import com.google.gson.Gson;
-import com.lx.config.bean.Param;
-import com.lx.config.bean.SCCSystem;
-import com.lx.config.bean.SCCUser;
-import com.lx.config.service.SysService;
-import com.lx.config.util.RedisStringUtils;
-import org.mybatis.spring.SqlSessionTemplate;
+import com.lx.coupon.bean.SysUser;
+import com.lx.coupon.service.sys.SysService;
+import com.lx.coupon.util.RedisStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class SysServiceImpl implements SysService {
@@ -23,22 +14,22 @@ public class SysServiceImpl implements SysService {
     @Autowired
     private RedisStringUtils redisStringUtils;
 
-    @Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
+/*    @Autowired
+    private SqlSessionTemplate sqlSessionTemplate;*/
 
     @Autowired
     private Gson gson;
 
     @Override
-    public SCCUser queryUserInfo(String token) {
+    public SysUser queryUserInfo(String token) {
 
         String value = redisStringUtils.get(RedisStringUtils.USER_CACHE_PREFIX+token);
-        SCCUser sccUser = gson.fromJson(value,SCCUser.class);
+        SysUser sysUser = gson.fromJson(value,SysUser.class);
 
-        return sccUser;
+        return sysUser;
     }
 
-    @Override
+    /*@Override
     public List<SCCSystem> querySysInfo() {
 
         List<Map<String,Object>> objects = sqlSessionTemplate.selectList("sysMapper.querySysInfo");
@@ -87,5 +78,5 @@ public class SysServiceImpl implements SysService {
 
 
         return affectCount;
-    }
+    }*/
 }

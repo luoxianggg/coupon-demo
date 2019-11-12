@@ -1,4 +1,4 @@
-package com.lx.config.util;
+package com.lx.coupon.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

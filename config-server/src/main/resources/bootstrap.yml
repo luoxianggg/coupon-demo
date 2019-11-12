@@ -1,45 +1,17 @@
 spring:
   application:
     name: config-server
-#本地文件配置
-#  profiles:
-#    active: native
-#  cloud:
-#    config:
-#     server:
-#      native:
-#        search-locations: D:/upload
-#     label: master
-#git配置
   cloud:
     config:
       server:
-       # encrypt.enabled: false
         git:
           uri: https://github.com/luoxianggg/config-coupon-demo/
           search-paths: config-path
           force-pull: true
       label: master
-  datasource:
-    url: jdbc:mysql://localhost:3306/test
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
-
-   redis:
-    host: 127.0.0.1
-    port: 6379
-    timeout: 6000ms
-   # password: root
+server:
+  port: 8001
 eureka:
   client:
     service-url:
       defaultZone: http://server1:8000/eureka/
-server:
-  port: 8002
-
-mybatis:
- mapperLocations: classpath:mapper/*.xml
-
-scc:
- login-check-enabled: true

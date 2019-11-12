@@ -6,7 +6,7 @@ spring:
     name: service-common
   cloud:
     config:
-      uri: http://localhost:8002/
+      uri: http://localhost:8001/
       profile: dev
   profiles:
     active: dev

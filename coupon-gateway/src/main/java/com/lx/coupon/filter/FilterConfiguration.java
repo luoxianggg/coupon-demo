@@ -1,6 +1,6 @@
-package com.lx.config.filter;
+package com.lx.coupon.filter;
 
-import com.lx.config.service.UserService;
+import com.lx.coupon.service.sys.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfiguration {
     @Autowired
-    UserService userService;
+    SysUserService sysUserService;
     @Bean
     public FilterRegistrationBean loginFilterRegistration (){
         FilterRegistrationBean registrationBean = new FilterRegistrationBean(
-                new LoginFilter(userService)
+                new LoginFilter(sysUserService)
         );
         registrationBean.addUrlPatterns("/*");
         registrationBean.setName("loginFilter");

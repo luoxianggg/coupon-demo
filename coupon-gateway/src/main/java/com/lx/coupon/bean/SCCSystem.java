@@ -1,4 +1,4 @@
-package com.lx.config.bean;
+package com.lx.coupon.bean;
 
 public class SCCSystem {
     private int sysId;

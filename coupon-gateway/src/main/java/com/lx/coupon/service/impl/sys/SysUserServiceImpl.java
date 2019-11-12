@@ -1,9 +1,9 @@
-package com.lx.config.service.impl;
+package com.lx.coupon.service.impl.sys;
 
 import com.google.gson.Gson;
-import com.lx.config.bean.SCCUser;
-import com.lx.config.service.UserService;
-import com.lx.config.util.RedisStringUtils;
+import com.lx.coupon.bean.SysUser;
+import com.lx.coupon.service.sys.SysUserService;
+import com.lx.coupon.util.RedisStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -15,10 +15,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class SysUserServiceImpl implements SysUserService {
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
 
@@ -30,7 +29,7 @@ public class UserServiceImpl implements UserService{
     private Gson gson;
 
     @Override
-    public SCCUser login(String username, String password) {
+    public SysUser login(String username, String password) {
         //1.数据库查询
         if(username==null ||password==null){
             return null;
@@ -38,14 +37,14 @@ public class UserServiceImpl implements UserService{
         Map<String,String> paramMap = new HashMap<String,String>();
         paramMap.put("UserName",username);
         paramMap.put("Password",password);
-        Map<String,String> res = sqlSessionTemplate.selectOne("userMapper.queryUserByUserName",
+        Map<String,String> res = sqlSessionTemplate.selectOne("SysUserRolesMapper.queryUserByUserName",
                 paramMap);
         if(CollectionUtils.isEmpty(res)){
             return null;//没有查询到用户
         }else{
-            SCCUser user = convertDb2Bean(res);
+            SysUser user = convertDb2Bean(res);
             //更新数据库
-            updateDbUser(user);
+          //  insertLoginRecord(user);
             //更新缓存
             updateCacheUser(user);
             return user;
@@ -70,14 +69,14 @@ public class UserServiceImpl implements UserService{
     //更新缓存信息
 
     private final int EXPIRE_SECONDS = 60*60*24;
-    private void updateCacheUser(SCCUser user){
+    private void updateCacheUser(SysUser user){
         //token 慕课网用SnowflakeldGeneator找不到
         user.setUniqueId(Long.parseLong(UUID.randomUUID().toString().replace("-","").substring(0,10)));
 
         redisStringUtils.setKey(RedisStringUtils.USER_CACHE_PREFIX+user.getUniqueId(),gson.toJson(user),EXPIRE_SECONDS);
     }
 
-    private void updateDbUser(SCCUser user){
+   /* private void updateDbUser(SysUser user){
         //更新javaBean对象的最新登录时间
         user.setLastLoginDateTime(DateFormatUtils.format(new Date(),"yyyyMMdd HH:mm:ss"));
 
@@ -90,10 +89,10 @@ public class UserServiceImpl implements UserService{
         paramMap.put("LastLoginTime",dateTime[1]);
         sqlSessionTemplate.update("userMapper.updateUserLoginTime",paramMap);
 
-    }
+    }*/
 
-    private SCCUser convertDb2Bean(Map<String,String> res){
-        return new SCCUser(res.get("username")
+    private SysUser convertDb2Bean(Map<String,String> res){
+        return new SysUser(res.get("username")
                 ,res.get("lastlogindate"),res.get("lastlogintime"));
     }
 }

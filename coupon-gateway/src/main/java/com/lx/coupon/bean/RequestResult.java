@@ -1,4 +1,4 @@
-package com.lx.config.bean;
+package com.lx.coupon.bean;
 
 //返回数据格式
 public class RequestResult {

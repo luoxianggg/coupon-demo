@@ -1,12 +1,13 @@
-package com.lx.config.controller;
+package com.lx.coupon.controller;
 
-import com.lx.config.bean.RequestResult;
-import org.springframework.web.bind.annotation.*;
+import com.lx.coupon.bean.RequestResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserController {
+public class SysLoginController {
     private static final String Login_Status_Fail="1";
 
     private static final String Login_Status_Success="0";
