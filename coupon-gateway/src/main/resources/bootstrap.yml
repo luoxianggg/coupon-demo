@@ -13,12 +13,24 @@ spring:
     url: jdbc:mysql://localhost:3306/coupon_db
     username: root
     password: root
+  cloud:
+    config:
+      uri: http://localhost:8001/
+      profile: dev
+  profiles:
+    active: dev
 
 eureka:
   client:
     service-url:
       defaultZone: http://server1:8000/eureka/
+jwt:
+  tokenheader : token
+  secret : mySecret
+  expiration : 604800
+  tokenHead : Bearer
 
-
-
+mybatis:
+  type-aliases-package: com.lx.coupon.dao
+  mapper-locations: classpath:mapper/*.xml
 
