@@ -8,7 +8,7 @@ public class AccessLogFilter extends  AbstractPostFilter {
     @Override
     protected Object cRun() {
         HttpServletRequest request = context.getRequest();
-        //从 PreRequestFilter 中获取请求的时间戳
+        //从 PreTokenRequestFilter 中获取请求的时间戳
         Long startTime = (Long) context.get("startTime");
         String uri = request.getRequestURI();
         Long duration = System.currentTimeMillis() - startTime;

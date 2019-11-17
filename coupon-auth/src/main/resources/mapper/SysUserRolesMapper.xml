@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lx.coupon.dao.SysUserRolesMapper">
+    <select id="queryUserByUserName" parameterType="Map" resultType="com.lx.coupon.bean.SysUser">
+        select su.user_id "userId",
+            su.user_name "userName",
+            su.password "password",
+            su.icon "iconUrl",
+            su.employee_id "employeeId",
+            su.enable_flag "enableFlag"
+         from sys_user su
+        where su.user_name = #{UserName}
+        and su.password = #{Password}
+    </select>
+    <select id="queryUserRolesByUserName" parameterType="Map" resultType="com.lx.coupon.bean.SysUserRole">
+        select c.role_id "roleId",
+            c.role_name "roleName",
+            c.role_code "roleCode",
+            c.enable_flag "enableFlag"
+          from sys_user a,
+                sys_user_roles b,
+                sys_roles c
+           where a.user_name = #{Password}
+                and  b.user_id = a.user_id
+                and b.role_id = c.role_id
+    </select>
+
+</mapper>

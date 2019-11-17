@@ -1,6 +1,5 @@
 package com.lx.coupon.bean;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
