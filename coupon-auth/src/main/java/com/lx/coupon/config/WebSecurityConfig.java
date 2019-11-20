@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationProcessingFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -34,7 +35,6 @@ import java.util.List;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)//注解开启在方法上的保护功能
 public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
-
     @Autowired
     private SysUserService sysUserService;
     @Autowired
@@ -65,10 +65,11 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(HttpMethod.OPTIONS)//跨域请求会先进行一次options请求
                 .permitAll()
-                //  .antMatchers("/**")//测试时全部运行访问
-                //  .permitAll()
-                .anyRequest()// 除上面外的所有请求全部需要鉴权认证
-                .authenticated();
+                  .antMatchers("/**")//测试时全部运行访问
+                  .permitAll();
+//                .anyRequest()// 除上面外的所有请求全部需要鉴权认证
+//                .authenticated()
+                 ;
         // 禁用缓存
         httpSecurity.headers().cacheControl();
         // 添加JWT filter(huandaoZuul过滤器上做token校验)
@@ -78,7 +79,6 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(restfulAccessDeniedHandler)
                 .authenticationEntryPoint(restAuthenticationEntryPoint);
     }
-
     @Autowired
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())

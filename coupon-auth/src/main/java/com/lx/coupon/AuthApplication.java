@@ -34,12 +34,10 @@ public class AuthApplication {
         return userInfo;
     }
     @RequestMapping(value = "/admin/registry", method = RequestMethod.POST)
-    public SysUser createUser(@RequestParam("username") String username, @RequestParam("password") String password) {
-        if (StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(password)) {
-            return sysUserService.queryUserByUsername(username);
-        }
+    public String createUser(@RequestParam("username") String username, @RequestParam("password") String password) {
 
-        return null;
+
+        return "test";
     }
     public static void main(String[] args) {
         SpringApplication.run(AuthApplication.class,args);

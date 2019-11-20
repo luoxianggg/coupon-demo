@@ -19,7 +19,7 @@ public class SystemUserDetails implements UserDetails {
         this.umsAdmin = umsAdmin;
         this.permissionList = permissionList;
     }
-
+    public SystemUserDetails(){}
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //返回当前用户的权限
@@ -56,6 +56,6 @@ public class SystemUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return umsAdmin.getEnableFlag().equals("Y");
+        return true;
     }
 }

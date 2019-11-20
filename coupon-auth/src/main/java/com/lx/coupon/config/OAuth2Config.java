@@ -1,6 +1,8 @@
 package com.lx.coupon.config;
 
+import com.lx.coupon.service.UserServiceDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
@@ -22,7 +25,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter{
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserServiceDetail userDetailsService;
 
     @Value("${signingKey}")
     private String signingKey;
@@ -68,4 +71,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter{
         converter.setSigningKey("myserect");
         return converter;
     }
+
 }
+
+

@@ -1,6 +1,7 @@
 package com.lx.coupon.service.impl;
 
 import com.lx.coupon.bean.SysUserRole;
+import com.lx.coupon.bean.SystemUserDetails;
 import com.lx.coupon.dao.SysUserRolesMapper;
 import com.lx.coupon.bean.SysUser;
 import com.lx.coupon.service.SysUserService;
@@ -23,6 +24,14 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public List<SysUserRole> queryRolesByUsername(String username){
        return sysUserRolesMapper.queryUserRolesByUserName(username);
+    }
+
+    @Override
+    public SystemUserDetails queryUserAndRolesByUsername(String username) {
+        SysUser  sysUser = sysUserRolesMapper.queryUserByUserName(username);
+        List<SysUserRole> list = sysUserRolesMapper.queryUserRolesByUserName(username);
+        SystemUserDetails systemUserDetails = new SystemUserDetails(sysUser,list);
+        return systemUserDetails;
     }
 
 }
