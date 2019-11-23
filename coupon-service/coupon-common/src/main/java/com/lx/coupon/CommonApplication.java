@@ -10,14 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@RestController
 public class CommonApplication {
-    @Value("${test}")
-    String info;
-    @RequestMapping("/")
-    public String getInfo(){
-        return info + "hello";
-    }
 
     public static void main(String[] args) {
         SpringApplication.run(CommonApplication.class,args);

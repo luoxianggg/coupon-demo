@@ -2,7 +2,7 @@ package com.lx.coupon;
 
 import com.lx.coupon.bean.SysUser;
 import com.lx.coupon.service.SysUserService;
-import org.apache.commons.lang.StringUtils;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

@@ -3,6 +3,7 @@ package com.lx.coupon.bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -31,12 +32,14 @@ public class SystemUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return umsAdmin.getPassword();
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.encode(umsAdmin.getPassword()) ;
+     //   return umsAdmin.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return umsAdmin.getPassword();
+        return umsAdmin.getUserName();
     }
 
     @Override

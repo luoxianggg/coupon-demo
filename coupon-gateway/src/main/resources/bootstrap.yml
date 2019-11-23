@@ -33,4 +33,19 @@ jwt:
 mybatis:
   type-aliases-package: com.lx.coupon.dao
   mapper-locations: classpath:mapper/*.xml
+zuul:
+  prefix: /lx
+  routes:
+    #优惠券模板微服务路由配置定义
+    template:
+      path: /coupon-template/**
+      serviceId: eureka-client-coupon-template
+      strip-prefix: false
+  host:
+    connect-timeout-millis: 15000
+    socket-timeout-millis: 60000
+ribbon:
+  ConnectTimeout: 15000
+  ReadTimeout: 15000
+
 

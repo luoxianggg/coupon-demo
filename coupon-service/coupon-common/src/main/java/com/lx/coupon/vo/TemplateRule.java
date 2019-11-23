@@ -24,6 +24,11 @@ public class TemplateRule {
    //权重（可以和哪些优惠券叠加使用，同一类优惠券不能叠加）
     private  String weight;
 
+    public  boolean validate(){
+        return expiration.validate() && discount.validate() &&
+                limitation > 0 && usage.validate() &&
+                StringUtils.isNotEmpty(weight);
+    }
     //有效期规则
     @AllArgsConstructor
     @Data
