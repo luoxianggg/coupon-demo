@@ -32,9 +32,10 @@ public class SystemUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder.encode(umsAdmin.getPassword()) ;
-     //   return umsAdmin.getPassword();
+     //   BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+     //   System.out.println(bCryptPasswordEncoder.encode(umsAdmin.getPassword()));
+      //  return bCryptPasswordEncoder.encode(umsAdmin.getPassword()) ;
+        return umsAdmin.getPassword();
     }
 
     @Override

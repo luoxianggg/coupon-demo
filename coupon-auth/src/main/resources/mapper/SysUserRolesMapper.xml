@@ -12,7 +12,6 @@
             su.enable_flag "enableFlag"
          from sys_user su
         where su.user_name = #{UserName}
-        and su.password = #{Password}
     </select>
     <select id="queryUserRolesByUserName" parameterType="Map" resultType="com.lx.coupon.bean.SysUserRole">
         select c.role_id "roleId",
