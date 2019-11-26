@@ -2,6 +2,7 @@ package com.lx.coupon.config;
 
 import com.lx.coupon.service.UserServiceDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
@@ -19,6 +20,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 
@@ -63,6 +65,5 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                  			.scopes("all").resourceIds("oauth2-resource").accessTokenValiditySeconds(1200)
                  		.refreshTokenValiditySeconds(50000);
                 }
-
 
 }

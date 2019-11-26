@@ -13,6 +13,11 @@ spring:
       url: jdbc:mysql://localhost:3306/coupon_db?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       username: root
       password: root
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri:
 
 
 eureka:
@@ -26,6 +31,11 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 signingKey: myserect
+jwt:
+  tokenHeader: token
+  secret: mySecret
+  expiration: 3600000
+  tokenHead: Bearer
 
 
 

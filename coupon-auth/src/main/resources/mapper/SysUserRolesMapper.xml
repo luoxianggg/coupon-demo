@@ -21,7 +21,7 @@
           from sys_user a,
                 sys_user_roles b,
                 sys_roles c
-           where a.user_name = #{Password}
+           where a.user_name = #{UserName}
                 and  b.user_id = a.user_id
                 and b.role_id = c.role_id
     </select>
