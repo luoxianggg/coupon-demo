@@ -1,8 +1,5 @@
 package com.lx.coupon.config;
 
-import com.lx.coupon.bean.SysUser;
-import com.lx.coupon.bean.SysUserRole;
-import com.lx.coupon.bean.SystemUserDetails;
 import com.lx.coupon.component.RestAuthenticationEntryPoint;
 import com.lx.coupon.component.RestfulAccessDeniedHandler;
 import com.lx.coupon.service.SysUserService;

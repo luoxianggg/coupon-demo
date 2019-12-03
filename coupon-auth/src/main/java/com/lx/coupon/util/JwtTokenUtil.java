@@ -1,4 +1,4 @@
-package util;
+package com.lx.coupon.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
